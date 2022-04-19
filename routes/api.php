@@ -7,6 +7,8 @@ use App\Models\Type;
 use App\Models\User;
 use App\Models\Project;
 use App\Models\Link;
+use App\Models\Certification;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -75,5 +77,12 @@ Route::get('/links', function(){
     }
 
     return $links;
+
+});
+
+Route::get('/certifications', function(){
+
+    $certifications = Certification::all();
+    return $certifications;
 
 });
