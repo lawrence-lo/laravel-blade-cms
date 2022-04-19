@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Type;
 use App\Models\User;
 use App\Models\Project;
+use App\Models\Link;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,5 +59,21 @@ Route::get('/projects/profile/{project?}', function(Project $project){
     }
     
     return $project;
+
+});
+
+Route::get('/links', function(){
+
+    $links = Link::orderBy('created_at')->get();
+
+    foreach($links as $key => $link)
+    {
+        if($link['icon'])
+        {
+            $links[$key]['icon'] = env('APP_URL').'storage/'.$links[$key]['icon'];
+        }
+    }
+
+    return $links;
 
 });

@@ -1,8 +1,10 @@
 <?php
 
 use App\Models\Project;
+use App\Models\Link;
 use App\Http\Controllers\ConsoleController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\LinksController;
 use App\Http\Controllers\TypesController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome', [
         'projects' => Project::all(),
+        'links' => Link::all(),
     ]);
 });
 
@@ -43,6 +46,15 @@ Route::post('/console/projects/edit/{project:id}', [ProjectsController::class, '
 Route::get('/console/projects/delete/{project:id}', [ProjectsController::class, 'delete'])->where('project', '[0-9]+')->middleware('auth');
 Route::get('/console/projects/image/{project:id}', [ProjectsController::class, 'imageForm'])->where('project', '[0-9]+')->middleware('auth');
 Route::post('/console/projects/image/{project:id}', [ProjectsController::class, 'image'])->where('project', '[0-9]+')->middleware('auth');
+
+Route::get('/console/links/list', [LinksController::class, 'list'])->middleware('auth');
+Route::get('/console/links/add', [LinksController::class, 'addForm'])->middleware('auth');
+Route::post('/console/links/add', [LinksController::class, 'add'])->middleware('auth');
+Route::get('/console/links/edit/{link:id}', [LinksController::class, 'editForm'])->where('link', '[0-9]+')->middleware('auth');
+Route::post('/console/links/edit/{link:id}', [LinksController::class, 'edit'])->where('link', '[0-9]+')->middleware('auth');
+Route::get('/console/links/delete/{link:id}', [LinksController::class, 'delete'])->where('link', '[0-9]+')->middleware('auth');
+Route::get('/console/links/icon/{link:id}', [LinksController::class, 'iconForm'])->where('link', '[0-9]+')->middleware('auth');
+Route::post('/console/links/icon/{link:id}', [LinksController::class, 'icon'])->where('link', '[0-9]+')->middleware('auth');
 
 Route::get('/console/users/list', [UsersController::class, 'list'])->middleware('auth');
 Route::get('/console/users/add', [UsersController::class, 'addForm'])->middleware('auth');

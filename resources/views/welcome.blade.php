@@ -79,6 +79,18 @@
         Email: <a href="mailto:email@address.com">email@address.com</a>
     </p>
 
+    @foreach ($links as $link)
+        
+        <a class="w3-padding" href="{{$link->url}}" target="_blank">
+            @if ($link->icon)
+                <img src="{{asset('storage/'.$link->icon)}}" width="100" alt="An icon of {{$link->name}}">
+            @else
+                {{$link->name}}
+            @endif
+        </a>
+        
+    @endforeach
+
 </section>
 
 @endsection
