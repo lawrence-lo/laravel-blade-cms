@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Certification;
 
 
-class CertificationController extends Controller
+class CertificationsController extends Controller
 {
     public function list()
     {

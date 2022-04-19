@@ -69,6 +69,54 @@
 
 <hr>
 
+<section class="w3-padding w3-container">
+
+    <h2 class="w3-text-blue">Certifications</h2>
+
+    @foreach ($certifications as $certification)
+
+        <div class="w3-card w3-margin">
+            
+            <div class="w3-container w3-padding">
+
+                @if ($certification->type)
+                    <p>
+                        Type: {{$certification->type}}
+                    </p>
+                @endif
+
+                @if ($certification->subject)
+                    <p>
+                        Subject: {{$certification->subject}}
+                    </p>
+                @endif
+
+                @if ($certification->school)
+                    <p>
+                        School: {{$certification->school}}
+                    </p>
+                @endif
+
+                @if ($certification->date)
+                    <p>
+                        Date: {{$certification->date}}
+                    </p>
+                @endif
+
+                <p>
+                    Posted: {{$certification->created_at->format('M j, Y')}}
+                </p>
+
+            </div>
+        
+        </div>
+
+    @endforeach
+
+</section>
+
+<hr>
+
 <section class="w3-padding">
 
     <h2 class="w3-text-blue">Contact Me</h2>

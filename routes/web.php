@@ -2,12 +2,13 @@
 
 use App\Models\Project;
 use App\Models\Link;
+use App\Models\Certification;
 use App\Http\Controllers\ConsoleController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\LinksController;
 use App\Http\Controllers\TypesController;
 use App\Http\Controllers\UsersController;
-use App\Http\Controllers\CertificationController;
+use App\Http\Controllers\CertificationsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,7 @@ Route::get('/', function () {
     return view('welcome', [
         'projects' => Project::all(),
         'links' => Link::all(),
+        'certifications' => Certification::all(),
     ]);
 });
 
@@ -71,9 +73,9 @@ Route::get('/console/types/edit/{type:id}', [TypesController::class, 'editForm']
 Route::post('/console/types/edit/{type:id}', [TypesController::class, 'edit'])->where('type', '[0-9]+')->middleware('auth');
 Route::get('/console/types/delete/{type:id}', [TypesController::class, 'delete'])->where('type', '[0-9]+')->middleware('auth');
 
-Route::get('/console/certifications/list', [CertificationController::class, 'list'])->middleware('auth');
-Route::get('/console/certifications/add', [CertificationController::class, 'addForm'])->middleware('auth');
-Route::post('/console/certifications/add', [CertificationController::class, 'add'])->middleware('auth');
-Route::get('/console/certifications/edit/{certification:id}', [CertificationController::class, 'editForm'])->where('certification', '[0-9]+')->middleware('auth');
-Route::post('/console/certifications/edit/{certification:id}', [CertificationController::class, 'edit'])->where('certification', '[0-9]+')->middleware('auth');
-Route::get('/console/certifications/delete/{certification:id}', [CertificationController::class, 'delete'])->where('certification', '[0-9]+')->middleware('auth');
+Route::get('/console/certifications/list', [CertificationsController::class, 'list'])->middleware('auth');
+Route::get('/console/certifications/add', [CertificationsController::class, 'addForm'])->middleware('auth');
+Route::post('/console/certifications/add', [CertificationsController::class, 'add'])->middleware('auth');
+Route::get('/console/certifications/edit/{certification:id}', [CertificationsController::class, 'editForm'])->where('certification', '[0-9]+')->middleware('auth');
+Route::post('/console/certifications/edit/{certification:id}', [CertificationsController::class, 'edit'])->where('certification', '[0-9]+')->middleware('auth');
+Route::get('/console/certifications/delete/{certification:id}', [CertificationsController::class, 'delete'])->where('certification', '[0-9]+')->middleware('auth');
