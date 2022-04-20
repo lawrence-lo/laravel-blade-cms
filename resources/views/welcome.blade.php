@@ -99,7 +99,7 @@
 
                 @if ($certification->date)
                     <p>
-                        Date: {{$certification->date}}
+                        Date: {{date('M j, Y', strtotime($certification->date))}}
                     </p>
                 @endif
 
